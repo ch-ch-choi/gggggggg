@@ -1,0 +1,317 @@
+[
+    {
+        "tag": "ㄱ",
+        "language": "kor",
+        "letterNumber": 1,
+        "letterBtn": "../letter_btn_kor/g_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_01_kor_g.svg"
+    },
+    {
+        "tag": "ㄲ",
+        "language": "kor",
+        "letterNumber": 2,
+        "letterBtn": "../letter_btn_kor/gg_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_02_kor_gg.svg"
+    },
+    {
+        "tag": "ㄴ",
+        "language": "kor",
+        "letterNumber": 3,
+        "letterBtn": "../letter_btn_kor/n_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_03_kor_n.svg"
+    },
+    {
+        "tag": "ㄷ",
+        "language": "kor",
+        "letterNumber": 4,
+        "letterBtn": "../letter_btn_kor/d_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_04_kor_d.svg"
+    },
+    {
+        "tag": "ㄸ",
+        "language": "kor",
+        "letterNumber": 5,
+        "letterBtn": "../letter_btn_kor/dd_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_05_kor_dd.svg"
+    },
+    {
+        "tag": "ㄹ",
+        "language": "kor",
+        "letterNumber": 6,
+        "letterBtn": "../letter_btn_kor/r_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_06_kor_r.svg"
+    },
+    {
+        "tag": "ㅁ",
+        "language": "kor",
+        "letterNumber": 7,
+        "letterBtn": "../letter_btn_kor/m_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_07_kor_m.svg"
+    },
+    {
+        "tag": "ㅂ",
+        "language": "kor",
+        "letterNumber": 8,
+        "letterBtn": "../letter_btn_kor/b_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_08_kor_b.svg"
+    },
+    {
+        "tag": "ㅃ",
+        "language": "kor",
+        "letterNumber": 9,
+        "letterBtn": "../letter_btn_kor/bb_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_09_kor_bb.svg"
+    },
+    {
+        "tag": "ㅅ",
+        "language": "kor",
+        "letterNumber": 10,
+        "letterBtn": "../letter_btn_kor/s_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_10_kor_s.svg"
+    },
+    {
+        "tag": "ㅆ",
+        "language": "kor",
+        "letterNumber": 11,
+        "letterBtn": "../letter_btn_kor/ss_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_11_kor_ss.svg"
+    },
+    {
+        "tag": "ㅇ",
+        "language": "kor",
+        "letterNumber": 12,
+        "letterBtn": "../letter_btn_kor/ng_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_12_kor_ng.svg"
+    },
+    {
+        "tag": "ㅈ",
+        "language": "kor",
+        "letterNumber": 13,
+        "letterBtn": "../letter_btn_kor/j_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_13_kor_j.svg"
+    },
+    {
+        "tag": "ㅉ",
+        "language": "kor",
+        "letterNumber": 14,
+        "letterBtn": "../letter_btn_kor/jj_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_14_kor_jj.svg"
+    },
+    {
+        "tag": "ㅊ",
+        "language": "kor",
+        "letterNumber": 15,
+        "letterBtn": "../letter_btn_kor/ch_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_15_kor_ch.svg"
+    },
+    {
+        "tag": "ㅋ",
+        "language": "kor",
+        "letterNumber": 16,
+        "letterBtn": "../letter_btn_kor/k_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_16_kor_k.svg"
+    },
+    {
+        "tag": "ㅌ",
+        "language": "kor",
+        "letterNumber": 17,
+        "letterBtn": "../letter_btn_kor/t_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_17_kor_t.svg"
+    },
+    {
+        "tag": "ㅍ",
+        "language": "kor",
+        "letterNumber": 18,
+        "letterBtn": "../letter_btn_kor/p_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_18_kor_p.svg"
+    },
+    {
+        "tag": "ㅎ",
+        "language": "kor",
+        "letterNumber": 19,
+        "letterBtn": "../letter_btn_kor/h_letter_kor.svg",
+        "letterLogo": "../letter_logos/logo_19_kor_h.svg"
+    },
+    {
+        "tag": "a",
+        "language": "eng",
+        "letterNumber": 20,
+        "letterBtn": "../letter_btn_eng/a_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_20_eng_a.svg"
+    },
+    {
+        "tag": "b",
+        "language": "eng",
+        "letterNumber": 21,
+        "letterBtn": "../letter_btn_eng/b_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_21_eng_b.svg"
+    },
+    {
+        "tag": "c",
+        "language": "eng",
+        "letterNumber": 22,
+        "letterBtn": "../letter_btn_eng/c_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_22_eng_c.svg"
+    },
+    {
+        "tag": "d",
+        "language": "eng",
+        "letterNumber": 23,
+        "letterBtn": "../letter_btn_eng/d_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_23_eng_d.svg"
+    },
+    {
+        "tag": "e",
+        "language": "eng",
+        "letterNumber": 24,
+        "letterBtn": "../letter_btn_eng/e_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_24_eng_e.svg"
+    },
+    {
+        "tag": "f",
+        "language": "eng",
+        "letterNumber": 25,
+        "letterBtn": "../letter_btn_eng/f_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_25_eng_f.svg"
+    },
+    {
+        "tag": "g",
+        "language": "eng",
+        "letterNumber": 26,
+        "letterBtn": "../letter_btn_eng/g_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_26_eng_g.svg"
+    },
+    {
+        "tag": "h",
+        "language": "eng",
+        "letterNumber": 27,
+        "letterBtn": "../letter_btn_eng/h_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_27_eng_h.svg"
+    },
+    {
+        "tag": "i",
+        "language": "eng",
+        "letterNumber": 28,
+        "letterBtn": "../letter_btn_eng/i_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_28_eng_i.svg"
+    },
+    {
+        "tag": "j",
+        "language": "eng",
+        "letterNumber": 29,
+        "letterBtn": "../letter_btn_eng/j_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_29_eng_j.svg"
+    },
+    {
+        "tag": "k",
+        "language": "eng",
+        "letterNumber": 30,
+        "letterBtn": "../letter_btn_eng/k_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_30_eng_k.svg"
+    },
+    {
+        "tag": "l",
+        "language": "eng",
+        "letterNumber": 31,
+        "letterBtn": "../letter_btn_eng/l_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_31_eng_l.svg"
+    },
+    {
+        "tag": "m",
+        "language": "eng",
+        "letterNumber": 32,
+        "letterBtn": "../letter_btn_eng/m_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_32_eng_m.svg"
+    },
+    {
+        "tag": "n",
+        "language": "eng",
+        "letterNumber": 33,
+        "letterBtn": "../letter_btn_eng/n_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_33_eng_n.svg"
+    },
+    {
+        "tag": "o",
+        "language": "eng",
+        "letterNumber": 34,
+        "letterBtn": "../letter_btn_eng/o_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_34_eng_o.svg"
+    },
+    {
+        "tag": "p",
+        "language": "eng",
+        "letterNumber": 35,
+        "letterBtn": "../letter_btn_eng/p_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_35_eng_p.svg"
+    },
+    {
+        "tag": "q",
+        "language": "eng",
+        "letterNumber": 36,
+        "letterBtn": "../letter_btn_eng/q_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_36_eng_q.svg"
+    },
+    {
+        "tag": "r",
+        "language": "eng",
+        "letterNumber": 37,
+        "letterBtn": "../letter_btn_eng/r_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_37_eng_r.svg"
+    },
+    {
+        "tag": "s",
+        "language": "eng",
+        "letterNumber": 38,
+        "letterBtn": "../letter_btn_eng/s_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_38_eng_s.svg"
+    },
+    {
+        "tag": "t",
+        "language": "eng",
+        "letterNumber": 39,
+        "letterBtn": "../letter_btn_eng/t_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_39_eng_t.svg"
+    },
+    {
+        "tag": "u",
+        "language": "eng",
+        "letterNumber": 40,
+        "letterBtn": "../letter_btn_eng/u_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_40_eng_u.svg"
+    },
+    {
+        "tag": "v",
+        "language": "eng",
+        "letterNumber": 41,
+        "letterBtn": "../letter_btn_eng/v_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_41_eng_v.svg"
+    },
+    {
+        "tag": "w",
+        "language": "eng",
+        "letterNumber": 42,
+        "letterBtn": "../letter_btn_eng/w_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_42_eng_w.svg"
+    },
+    {
+        "tag": "x",
+        "language": "eng",
+        "letterNumber": 43,
+        "letterBtn": "../letter_btn_eng/x_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_43_eng_x.svg"
+    },
+    {
+        "tag": "y",
+        "language": "eng",
+        "letterNumber": 44,
+        "letterBtn": "../letter_btn_eng/y_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_44_eng_y.svg"
+    },
+    {
+        "tag": "z",
+        "language": "eng",
+        "letterNumber": 45,
+        "letterBtn": "../letter_btn_eng/z_letter_eng.svg",
+        "letterLogo": "../letter_logos/logo_45_eng_z.svg"
+    }
+]

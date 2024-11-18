@@ -1,0 +1,61 @@
+[
+    {
+        "id": "000",
+        "pages": [
+            "../book_pages/000/000_m_01.jpg",
+            "../book_pages/000/000_m_02.jpg",
+            "../book_pages/000/000_m_03.jpg",
+            "../book_pages/000/000_m_04.jpg",
+            "../book_pages/000/000_m_05.jpg",
+            "../book_pages/000/000_m_06.jpg",
+            "../book_pages/000/000_m_07.jpg",
+            "../book_pages/000/000_m_08.jpg",
+            "../book_pages/000/000_m_09.jpg",
+            "../book_pages/000/000_m_10.jpg",
+            "../book_pages/000/000_m_11.jpg",
+            "../book_pages/000/000_m_12.jpg",
+            "../book_pages/000/000_m_13.jpg",
+            "../book_pages/000/000_m_14.jpg",
+            "../book_pages/000/000_m_15.jpg",
+            "../book_pages/000/000_m_16.jpg",
+            "../book_pages/000/000_m_17.jpg",
+            "../book_pages/000/000_m_18.jpg",
+            "../book_pages/000/000_m_19.jpg",
+            "../book_pages/000/000_m_20.jpg",
+            "../book_pages/000/000_m_21.jpg",
+            "../book_pages/000/000_m_22.jpg",
+            "../book_pages/000/000_m_23.jpg",
+            "../book_pages/000/000_m_24.jpg",
+            "../book_pages/000/000_m_25.jpg",
+            "../book_pages/000/000_m_26.jpg",
+            "../book_pages/000/000_m_27.jpg",
+            "../book_pages/000/000_m_28.jpg",
+            "../book_pages/000/000_m_29.jpg",
+            "../book_pages/000/000_m_30.jpg",
+            "../book_pages/000/000_m_31.jpg",
+            "../book_pages/000/000_m_32.jpg",
+            "../book_pages/000/000_m_33.jpg",
+            "../book_pages/000/000_m_34.jpg",
+            "../book_pages/000/000_m_35.jpg",
+            "../book_pages/000/000_m_36.jpg",
+            "../book_pages/000/000_m_37.jpg",
+            "../book_pages/000/000_m_38.jpg",
+            "../book_pages/000/000_m_39.jpg",
+            "../book_pages/000/000_m_40.jpg"
+        ]
+    },
+    {
+        "id": "",
+        "pages": [
+            "../book_pages/",
+            "../book_pages/"
+        ]
+    },
+    {
+        "id": "",
+        "pages": [
+            "../book_pages/",
+            "../book_pages/"
+        ]
+    }
+]
