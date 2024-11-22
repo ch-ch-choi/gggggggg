@@ -29,7 +29,14 @@ const BracketRight: React.FC<BracketRightProps> = ({height}) => {
     const korKnob = useKnobOnOffStore((state) => state.korKnobOnOff);
     const engKnob = useKnobOnOffStore((state) => state.engKnobOnOff);
 
-    const turningKnobsOff = () => {korKnob === true ? setKorKnob(false) : null; engKnob === true ? setEngKnob(false) : null;};
+    const turningKnobsOff = () => {
+        if (korKnob === true) {
+            setKorKnob(false);
+        }
+        if (engKnob === true) {
+            setEngKnob(false);
+        }
+    };
 
     const bodyPage = useBodyPageStore((state) => state.bodyPage);
     const setBodyPage = useBodyPageStore((state) => state.setBodyPage);
@@ -59,7 +66,9 @@ const BracketRight: React.FC<BracketRightProps> = ({height}) => {
                 bracketMouseUp(btnRef.current); 
                 turningKnobsOff(); 
                 if (!isArmAnimating){
-                    {bodyPage !== 2 ? setBodyPage(bodyPage + 1) : null};
+                    if (bodyPage !== 2) {
+                        setBodyPage(bodyPage + 1);
+                    }
                     setPageDirection(1);
                 }
             }}/>

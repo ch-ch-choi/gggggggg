@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 import usePageDirectionStore from "../../stores/page_direction_store";
 import useIsArmAnimatingStore from "../../stores/is_arm_animating_store";
 import { bracketMouseDown, bracketMouseUp, bracketMouseEnter, bracketMouseLeave } from '../../animations/bracketClickAnimations';
-import useBookPageStore from "../../stores/book_store";
 import { legBracketOpening } from "../../animations/legSideAnimations";
+import useBookViewerStore from "../../stores/book_viewer_store";
 
 
 interface BracketProps {
@@ -21,24 +21,12 @@ const BracketLeft: React.FC<BracketProps> = ({height}) => {
     const pathData = `M0 0 H42 V18 H18 V${height - 18}  H42 V${height}  H0 V0 Z`;
     const btnRef = useRef(null);
     
-    const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
     const isArmAnimating = useIsArmAnimatingStore((state) => state.isArmAnimating);
-
-    const bookPage = useBookPageStore((state) => state.bookPage);
-    const setBookPage = useBookPageStore((state) => state.setBookPage);
-
-    const [isSpreadView, setIsSpreadView] = useState(window.innerWidth > 768);
-
-    useEffect(() => {
-    const handleResize = () => {
-        setIsSpreadView(window.innerWidth > 1440);
-    };
-    
-    window.addEventListener("resize", handleResize);
-    return () => {
-        window.removeEventListener("resize", handleResize);
-    };
-    }, []);
+    const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
+    const currentViewMode = useBookViewerStore((state) => state.currentViewMode);
+    const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
+    const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
+    const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
 
     useEffect(() => {
         if (btnRef.current){
@@ -60,13 +48,20 @@ const BracketLeft: React.FC<BracketProps> = ({height}) => {
                     onMouseDown={() => bracketMouseDown(btnRef.current)}
                     onMouseUp={() => {
                         bracketMouseUp(btnRef.current); 
-                        if (!isArmAnimating && isSpreadView) {
-                            {bookPage !== 0 ? setBookPage(bookPage - 2) : null};
-                            setPageDirection(-1);
-                        }else if (!isArmAnimating && !isSpreadView) {
-                            {bookPage !== 0 ? setBookPage(bookPage - 1) : null};
-                            setPageDirection(-1);
-                        };
+                        setCurrentClicked("bracket");
+                        setPageDirection(-1);
+
+                        if (!isArmAnimating && currentPageNumber !== 0){
+                            if (currentViewMode === "page") {
+                                setCurrentPageNumber(currentPageNumber - 1)
+                            } else if (currentViewMode === "spread") {
+                                if (currentPageNumber === 1){
+                                    setCurrentPageNumber(currentPageNumber - 1)
+                                } else {
+                                    setCurrentPageNumber(currentPageNumber - 2)
+                                }
+                            }
+                        }
                     }}/>
             </svg>
         </Container>

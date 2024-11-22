@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { legSideMouseEnter, legSideMouseLeave, legSideOpening, legSideStandby } from "../../animations/legSideAnimations";
-import useBookStore from "../../stores/book_store";
 import useHoveredBookStore from "../../stores/hovered_book_store";
-import gsap from "gsap";
+import useIsOpeningStore from "../../stores/is_opening_store";
 
 interface SideProps {
     maxHeight: string;
@@ -40,19 +39,24 @@ const Side = ({maxHeight, position, children}: SideProps) => {
     const sideRef = useRef(null);
     const [sideDisabled, setSideDisabled] = useState(true);
     const hoveredBookId = useHoveredBookStore((state) => state.hoveredBook);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
+    const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
 
     useEffect(() => {
         if (sideRef.current) {
-          setSideDisabled(true);
-          legSideOpening(sideRef.current, position);
-          setTimeout(() => {
-            setSideDisabled(false);
-        }, 1300);
+            legSideStandby(sideRef.current, position);
+            setSideDisabled(true);
+            setTimeout(() => {
+                legSideOpening(sideRef.current, position);
+                setTimeout(() => {
+                    setSideDisabled(false);
+                }, 1300);
+            }, 2600 + 400)
         }
-      }, []);
+    }, []);
 
     useEffect(() => {
-        if (sideRef.current){
+        if (sideRef.current && !isOpening){
             setSideDisabled(true);
             legSideMouseLeave(sideRef.current, position);
             setTimeout(() => {

@@ -6,8 +6,9 @@ import lettersDataJSON from '../../../assets/data/letters.json';
 import indecator from '../../../assets/indicator.png';
 import useHoveredBookStore from '../../../stores/hovered_book_store';
 import { bookListLoading, bookListLoadingStandby } from '../../../animations/headAnimations';
-import useBookStore from '../../../stores/book_store';
 import { Link } from 'react-router-dom';
+import useBookViewerStore from '../../../stores/book_viewer_store';
+import useIsOpeningStore from '../../../stores/is_opening_store';
 
 const booksData = JSON.parse(JSON.stringify(booksDataJSON));
 const lettersData = JSON.parse(JSON.stringify(lettersDataJSON));
@@ -49,14 +50,16 @@ const BookList = () => {
     const hoveredBookId = useHoveredBookStore((state) => state.hoveredBook);
     const setHoveredBookId = useHoveredBookStore((state) => state.setHoveredBook);
     
-    const setSelectedBookId = useBookStore((state) => state.setSelectedBookId);
+    const setCurrentBookId = useBookViewerStore((state) => state.setCurrentBookId);
+    const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
 
     const handleMouseEnter = (id: string) => {
         setHoveredBookId(id);
     };
 
     const onClick = () => {
-        setSelectedBookId(hoveredBookId);
+        setCurrentBookId(hoveredBookId);
+        setIsOpening(true);
     };
 
     useEffect(()=>{

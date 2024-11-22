@@ -1,7 +1,7 @@
 import gsap from "gsap";
 
 export const legSideStandby = (element, position) => {
-    gsap.to(element, {x: 280*position})
+    gsap.to(element, {x: 280*position, duration: 0})
 }
 export const legSideOpening = (element, position) => {
     const tl = gsap.timeline();
@@ -28,9 +28,13 @@ export const legBracketOpening = (element,position) => {
       .to(element, {x: 0 , duration: 0.1, ease: 'power1.inOut'})
 }
 
+export const legLogoStandby = (element) => {
+    gsap.to(element, {y: 120, opacity: 0, duration: 0})
+}
+
 export const legLogoOpening = (element) => {
     const tl = gsap.timeline();
-    tl.fromTo(element, {y: 120}, {y:-10, duration: 0.2, ease: 'power1.out'})
+    tl.fromTo(element, {y: 120, opacity: 1}, {y:-10, duration: 0.2, ease: 'power1.out'})
       .to(element, {y:0, duration: 0.1, ease: 'power1.inOut'});
 }
 
