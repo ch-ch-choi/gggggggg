@@ -23,7 +23,9 @@ const Indecator = ({pathData, position}:IndecatorProps) => {
 
     useEffect(() => {
         if (containerRef.current) {
-            indecatorOpening(containerRef.current, position);
+            setTimeout(() => {
+                indecatorOpening(containerRef.current, position);
+            }, 2600 + 400)
         }
     }, []);
 
