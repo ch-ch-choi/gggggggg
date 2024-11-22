@@ -22,8 +22,8 @@ const PageList = () => {
         return(
             <>
                 {currentBookPagesData?.pages.slice(1, -1).map((page,index) => (
-                    <PageContainer key={index} pageNumber = {index}>
-                        <Page src={page} alt={`page${index}`} viewMode="page"/>
+                    <PageContainer key={index} pageNumber = {index+1}>
+                        <Page src={page} alt={`page${index+1}`} viewMode="page"/>
                     </PageContainer>
                 ))}
             </>
@@ -32,13 +32,16 @@ const PageList = () => {
         return(
             <>
                 {currentBookPagesData?.pages.slice(1, -1).map((page,index) => {
-                    if (index % 2 === 1) {
-                        <PageContainer key={index} pageNumber = {index}>
-                            <Page src={page} alt={`page${index}`} viewMode="spread"/>
-                            <Page src={currentBookPagesData?.pages[index + 1]} alt={`page${index + 1}`} viewMode="spread"/>
-                        </PageContainer>
+                    if (index % 2 === 0) {
+                        return(
+                            <PageContainer key={index+1} pageNumber = {index+1}>
+                                <Page src={page} alt={`page${index+1}`} viewMode="spread"/>
+                                <Page src={currentBookPagesData?.pages[index + 2]} alt={`page${index + 2}`} viewMode="spread"/>
+                            </PageContainer>
+                        )
+                    } else { 
+                        return null;
                     }
-                    return null;
                 })}
             </>
         );

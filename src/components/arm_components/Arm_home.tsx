@@ -48,7 +48,7 @@ const Arm_home = () => {
         <Arm pageNumber='0'>
             <Logo src={letterLogo} ref = {logoRef}/>
             <Book>
-                <BookCover/>
+                <BookCover location="Body"/>
                 <BookList/>
             </Book>
         </Arm>

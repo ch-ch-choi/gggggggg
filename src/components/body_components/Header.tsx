@@ -9,7 +9,6 @@ const Header = styled.div<{ height: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
-    @media (max-width: 1600px)
 `;
 
 export default Header;

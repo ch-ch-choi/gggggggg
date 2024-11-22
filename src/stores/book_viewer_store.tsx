@@ -16,8 +16,8 @@ interface bookViewerStoreProps{
 }
 
 const useBookViewerStore = create<bookViewerStoreProps>((set) => ({
-    currentBookId: "",
-    currentPageNumber: 0,
+    currentBookId: "000",
+    currentPageNumber: -1,
     currentPageCount: 0,
     currentViewMode: "",
     setCurrentBookId: (bookId) => set((state) => ({...state, currentBookId: bookId })),
@@ -25,7 +25,7 @@ const useBookViewerStore = create<bookViewerStoreProps>((set) => ({
     setCurrentPageCount: (pageCount) => set((state) => ({...state, currentPageCount: pageCount })),
     setCurrentViewMode: (viewMode) => set((state) => ({...state, currentViewMode: viewMode })),
 
-    currentClicked: "",
+    currentClicked: "bracket",
     setCurrentClicked: (value) => set((state) => ({ ...state, currentClicked: value })),
 
 }));

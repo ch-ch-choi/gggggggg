@@ -27,19 +27,23 @@ const Container = styled.div<ContainerProps>`
     background-image: url(${(props) => props.coverImg});
 `;
 
-const BookCover = () => {
+const BookCover = ({location}:{location:string}) => {
     const coverRef = useRef(null);
 
     const hoveredBookId = useHoveredBookStore((state) => state.hoveredBook)
     const hoveredBook = booksData.find((book: Book) => book.id === hoveredBookId);
     const hoveredBookCover = hoveredBook ? hoveredBook.coverBW : null;
 
+    const bodyOrLeg = location;
+
     useEffect(() => {
         if(coverRef.current){
+            if(bodyOrLeg === "Body"){
             bookCoverLoadingStandby(coverRef.current);
             setTimeout(() => {
                 bookCoverLoading(coverRef.current);
             }, 1780);
+            }
         }
     },[])
 

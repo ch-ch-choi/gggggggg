@@ -19,8 +19,8 @@ const Container = styled.div`
     padding: 42px 18px;
 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 24px;
 
     overflow: auto;
@@ -34,6 +34,7 @@ const Blank = styled.div`
 
 const SpreadContainer = styled.div`
     position: relative;
+    display: flex;
 `;
 
 const SpreadMouseDetector = styled.div`
@@ -50,7 +51,6 @@ const ThumbnailList = () => {
     const currentPageCount = useBookViewerStore((state) => state.currentPageCount);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
     const currentViewMode = useBookViewerStore((state) => state.currentViewMode);
-    const currentClicked = useBookViewerStore((state) => state.currentClicked);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
 
@@ -58,8 +58,8 @@ const ThumbnailList = () => {
 
     const spreadRefs = useRef<(HTMLDivElement | null)[]>(
         new Array(currentPageCount / 2 + 1).fill(null));
-    const thumbnailRefs = useRef<(HTMLDivElement | null)[]>(
-        new Array(currentPageCount).fill(null));
+    // const thumbnailRefs = useRef<(HTMLDivElement | null)[]>(
+    //     new Array(currentPageCount).fill(null));
 
     return (
         <Container>
@@ -67,7 +67,7 @@ const ThumbnailList = () => {
             <SpreadContainer ref={(el) => (spreadRefs.current[0] = el)}>
                 <Blank/>
                 <Thumbnail 
-                    ref={(el) => (thumbnailRefs.current[0] = el)} 
+                    // ref={(el) => (thumbnailRefs.current[0] = el)} 
                     backgroundImage={currentBookThumbnailData?.thumbnails[0]||""} 
                     pageNumber={0} 
                     currentPageNumber={currentPageNumber}
@@ -82,14 +82,14 @@ const ThumbnailList = () => {
                         style={{filter: (pageNumber === currentPageNumber && currentViewMode === "spread") ? 'brightness(0.5)' : 'brightness(1)'}}
                     >
                         <Thumbnail 
-                            ref={(el) => (thumbnailRefs.current[pageNumber] = el)} 
+                            // ref={(el) => (thumbnailRefs.current[pageNumber] = el)} 
                             backgroundImage={currentBookThumbnailData?.thumbnails[pageNumber]||""} 
                             pageNumber={pageNumber} 
                             currentPageNumber={currentPageNumber}
                             isArmAnimating={isArmAnimating}
                         />
                         <Thumbnail 
-                            ref={(el) => (thumbnailRefs.current[pageNumber + 1] = el)} 
+                            // ref={(el) => (thumbnailRefs.current[pageNumber + 1] = el)} 
                             backgroundImage={currentBookThumbnailData?.thumbnails[pageNumber + 1]||""} 
                             pageNumber={pageNumber + 1} 
                             currentPageNumber={currentPageNumber}
@@ -117,7 +117,7 @@ const ThumbnailList = () => {
             {/* 마지막 페이지 */}
             <SpreadContainer ref={(el) => (spreadRefs.current[currentPageCount / 2 + 1] = el)}>
                 <Thumbnail 
-                            ref={(el) => (thumbnailRefs.current[currentPageCount - 1] = el)} 
+                            // ref={(el) => (thumbnailRefs.current[currentPageCount - 1] = el)} 
                             backgroundImage={currentBookThumbnailData?.thumbnails[currentPageCount - 1]||""} 
                             pageNumber={currentPageCount - 1} 
                             currentPageNumber={currentPageNumber}

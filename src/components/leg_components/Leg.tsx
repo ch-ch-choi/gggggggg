@@ -23,6 +23,8 @@ import { legLogoOpening, legLogoStandby } from "../../animations/legSideAnimatio
 import Indecator from "./Indecator";
 import useIsArmAnimatingStore from "../../stores/is_arm_animating_store";
 import useIsOpeningStore from "../../stores/is_opening_store";
+import useBookViewerStore from "../../stores/book_viewer_store";
+import usePageDirectionStore from "../../stores/page_direction_store";
 
 const Logo = styled.img`
     width:84px; height:48px; 
@@ -33,9 +35,10 @@ const Leg = () => {
     const [mainHeight, setMainHeight] = useState<number | null>(null);
     const mainRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef(null);
-    const isArmAnimation = useIsArmAnimatingStore((state) => state.isArmAnimating);
-    const setIsArmAnimation = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
+    const setIsArmAnimating = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
+    const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
+    const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
 
     useEffect(() => {
         setTimeout(() => {
@@ -45,10 +48,11 @@ const Leg = () => {
             legLogoStandby(logoRef.current);
             setTimeout(() => {
                 legLogoOpening(logoRef.current);
-                setIsArmAnimation(false);
+                setIsArmAnimating(false);
                 // set
             }, 2600+ 400)
         }
+        setPageDirection(1);
         // 창 크기 변경 시 호출되는 함수 정의
         const handleResize = () => {
         if (mainRef.current) {
@@ -65,6 +69,12 @@ const Leg = () => {
         };
     }, []);
 
+    useEffect(() => {
+        setIsArmAnimating(true);
+        setTimeout(() => {
+            setIsArmAnimating(false);
+        }, 400);
+    }, [currentPageNumber])
 
     return(
         <Wrapper headerHeight="96px">

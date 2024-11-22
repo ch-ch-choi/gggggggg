@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import { pageMouseDown, pageMouseEnter, pageMouseLeave, pageMouseUp } from "../../animations/pageClickAnimations";
-import React from "react";
+import React, { useRef } from "react";
 
 interface ThumbnailProps {
     pageNumber: number;
@@ -21,44 +21,43 @@ const Container = styled.div`
     cursor: pointer;
 `;
 
-const Thumbnail = React.forwardRef<HTMLDivElement, ThumbnailProps>(
-    ({backgroundImage, pageNumber, currentPageNumber, isArmAnimating},ref) => {
+const Thumbnail = ({backgroundImage, pageNumber, currentPageNumber, isArmAnimating}:ThumbnailProps) => {
 
         // const currentPageNumber = useBookViewerStore((state) => (state.currentPageNumber));
         // const isArmAnimating = useIsArmAnimatingStore((state) => state.isArmAnimating);
         const setCurrentPageNumber = useBookViewerStore((state) => (state.setCurrentPageNumber));
         const setCurrentClicked = useBookViewerStore((state) => (state.setCurrentClicked));
+        const currentViewMode =useBookViewerStore((state) => state.currentViewMode);
+        const currentPageCount = useBookViewerStore((state) => state.currentPageCount);
+
+        const thumbnailRef = useRef<HTMLDivElement>(null);
 
         const handleMouseEnter = () => {
-            if (ref && typeof ref === "object" && ref.current) {
-              const element = ref.current;
+            if (thumbnailRef.current) {
+              const element = thumbnailRef.current;
               element.style.zIndex = "1";
               pageMouseEnter(element);
             }
         };
-      
         const handleMouseLeave = () => {
-            if (ref && typeof ref === "object" && ref.current) {
-              const element = ref.current;
+            if (thumbnailRef.current) {
+              const element = thumbnailRef.current;
               setTimeout(() => {
                 element.style.zIndex = "0";
               });
               pageMouseLeave(element);
             }
         };
-      
         const handleMouseUp = () => {
-            if (ref && typeof ref === "object" && ref.current) {
-              pageMouseUp(ref.current);
+            if (thumbnailRef.current) {
+              pageMouseUp(thumbnailRef.current);
             }
         };
-      
         const handleMouseDown = () => {
-            if (ref && typeof ref === "object" && ref.current) {
-              pageMouseDown(ref.current);
+            if (thumbnailRef.current) {
+              pageMouseDown(thumbnailRef.current);
             }
-        };
-      
+          };
         const handleClick = () => {
             if (!isArmAnimating) {
               setCurrentClicked("thumbnail");
@@ -68,10 +67,10 @@ const Thumbnail = React.forwardRef<HTMLDivElement, ThumbnailProps>(
       
         return (
             <Container
-              ref={ref}
+              ref={thumbnailRef}
               style={{
                 backgroundImage: `url(${backgroundImage})`,
-                filter: pageNumber === currentPageNumber ? "brightness(0.5)" : "brightness(1)",
+                filter: pageNumber === currentPageNumber && (currentViewMode === "page" || pageNumber===0 || pageNumber===currentPageCount-1)? "brightness(0.5)" : "brightness(1)",
               }}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -81,6 +80,5 @@ const Thumbnail = React.forwardRef<HTMLDivElement, ThumbnailProps>(
             />
         );
     }
-)
 
 export default Thumbnail;
