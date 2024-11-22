@@ -30,10 +30,10 @@ const BracketLeft: React.FC<BracketProps> = ({height}) => {
 
     useEffect(() => {
         if (btnRef.current){
-            
-            legBracketOpening(btnRef.current, -1);
             setTimeout(() => {
-                
+                legBracketOpening(btnRef.current, -1);
+            }, 2600 + 400)
+            setTimeout(() => {
             }, 1300);
         }
     }, []);

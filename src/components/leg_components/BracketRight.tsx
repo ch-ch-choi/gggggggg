@@ -28,14 +28,11 @@ const BracketRight: React.FC<BracketProps> = ({height}) => {
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
     const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
 
-    
-
     useEffect(() => {
         if (btnRef.current){
             setTimeout(() => {
                 legBracketOpening(btnRef.current, 1);
             }, 2600 + 400)
-            legBracketOpening(btnRef.current, 1);
             setTimeout(() => {
             }, 1300);
         }
