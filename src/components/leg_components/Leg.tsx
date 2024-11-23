@@ -38,9 +38,12 @@ const Leg = () => {
     const setIsArmAnimating = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
     const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
+    const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
 
+
     useEffect(() => {
+        setCurrentClicked('bracket');
         setTimeout(() => {
             setIsOpening(false);
         }, 2600 + 400 + 1300)

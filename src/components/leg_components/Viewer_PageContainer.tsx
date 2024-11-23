@@ -71,7 +71,7 @@ const PageContainer = ({children, pageNumber}:PageContainerProps) => {
             }
 
         }
-    },[currentPageNumber]);
+    },[currentPageNumber, currentViewMode]);
 
     // useEffect(() => {
     //     if(pageNumber === currentPageNumber + 1 && currentViewMode === "page"){

@@ -13,7 +13,7 @@ interface ThumbnailProps {
 const Container = styled.div`
     width: 96px; height: 131px;
     background-color: transparent;
-    border : 1px solid black;
+    outline : 1px solid black;
     background-size: cover; // 이미지를 컨테이너에 맞춤
     background-position: center; // 이미지를 가운데 정렬
     z-index: 0;

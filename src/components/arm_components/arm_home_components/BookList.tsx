@@ -52,6 +52,7 @@ const BookList = () => {
     
     const setCurrentBookId = useBookViewerStore((state) => state.setCurrentBookId);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
+    const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
 
     const handleMouseEnter = (id: string) => {
         setHoveredBookId(id);
@@ -60,6 +61,7 @@ const BookList = () => {
     const onClick = () => {
         setCurrentBookId(hoveredBookId);
         setIsOpening(true);
+        setCurrentPageNumber(-1);
     };
 
     useEffect(()=>{
