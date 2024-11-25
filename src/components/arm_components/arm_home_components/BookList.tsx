@@ -6,7 +6,7 @@ import lettersDataJSON from '../../../assets/data/letters.json';
 import indecator from '../../../assets/indicator.png';
 import useHoveredBookStore from '../../../stores/hovered_book_store';
 import { bookListLoading, bookListLoadingStandby } from '../../../animations/headAnimations';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useBookViewerStore from '../../../stores/book_viewer_store';
 import useIsOpeningStore from '../../../stores/is_opening_store';
 
@@ -54,6 +54,8 @@ const BookList = () => {
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
 
+    const navigate = useNavigate();
+
     const handleMouseEnter = (id: string) => {
         setHoveredBookId(id);
     };
@@ -62,6 +64,12 @@ const BookList = () => {
         setCurrentBookId(hoveredBookId);
         setIsOpening(true);
         setCurrentPageNumber(-1);
+
+        // 애니메이션 여기다가.
+
+        setTimeout(() => {
+            navigate("/viewer");
+          }, 2000);
     };
 
     useEffect(()=>{
@@ -88,27 +96,21 @@ const BookList = () => {
             <BookId>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                        <Link to="/viewer">
                             <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.id}</li>
-                        </Link>
                     ))}
                 </ol>
             </BookId>
             <BookDate>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                        <Link to="/viewer">
                             <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.date}</li>
-                        </Link>
                     ))}
                 </ol>
             </BookDate>
             <BookName>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                        <Link to="/viewer">
                             <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.name}</li>
-                        </Link>
                     ))}
                 </ol>
             </BookName>
