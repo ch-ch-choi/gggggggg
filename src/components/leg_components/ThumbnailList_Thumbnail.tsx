@@ -2,6 +2,7 @@ import styled from "styled-components";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import { pageMouseDown, pageMouseEnter, pageMouseLeave, pageMouseUp } from "../../animations/pageClickAnimations";
 import React, { useRef } from "react";
+import useIsOpeningStore from "../../stores/is_opening_store";
 
 interface ThumbnailProps {
     pageNumber: number;
@@ -29,18 +30,19 @@ const Thumbnail = ({backgroundImage, pageNumber, currentPageNumber, isArmAnimati
         const setCurrentClicked = useBookViewerStore((state) => (state.setCurrentClicked));
         const currentViewMode =useBookViewerStore((state) => state.currentViewMode);
         const currentPageCount = useBookViewerStore((state) => state.currentPageCount);
+        const isOpening = useIsOpeningStore((state) => state.isOpening);
 
         const thumbnailRef = useRef<HTMLDivElement>(null);
 
         const handleMouseEnter = () => {
-            if (thumbnailRef.current) {
+            if (thumbnailRef.current && !isOpening) {
               const element = thumbnailRef.current;
               element.style.zIndex = "1";
               pageMouseEnter(element);
             }
         };
         const handleMouseLeave = () => {
-            if (thumbnailRef.current) {
+            if (thumbnailRef.current && !isOpening) {
               const element = thumbnailRef.current;
               setTimeout(() => {
                 element.style.zIndex = "0";
@@ -49,17 +51,17 @@ const Thumbnail = ({backgroundImage, pageNumber, currentPageNumber, isArmAnimati
             }
         };
         const handleMouseUp = () => {
-            if (thumbnailRef.current) {
+            if (thumbnailRef.current && !isOpening && !isArmAnimating) {
               pageMouseUp(thumbnailRef.current);
             }
         };
         const handleMouseDown = () => {
-            if (thumbnailRef.current) {
+            if (thumbnailRef.current && !isOpening && !isArmAnimating) {
               pageMouseDown(thumbnailRef.current);
             }
           };
         const handleClick = () => {
-            if (!isArmAnimating) {
+            if (!isOpening && !isArmAnimating) {
               setCurrentClicked("thumbnail");
               setCurrentPageNumber(pageNumber);
             }

@@ -4,8 +4,8 @@ import { useRef } from "react";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import { pageMouseDown, pageMouseEnter, pageMouseLeave, pageMouseUp } from "../../animations/pageClickAnimations";
 import useIsArmAnimatingStore from "../../stores/is_arm_animating_store";
-import useIsThumbnailClickedStore from "../../stores/is_thumbnail_clicked_store";
 import Thumbnail from "./ThumbnailList_Thumbnail";
+import useIsOpeningStore from "../../stores/is_opening_store";
 
 interface BookThumbnails{
     id: string;
@@ -51,6 +51,7 @@ const ThumbnailList = () => {
     const currentPageCount = useBookViewerStore((state) => state.currentPageCount);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
     const currentViewMode = useBookViewerStore((state) => state.currentViewMode);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
 
@@ -99,14 +100,28 @@ const ThumbnailList = () => {
                             style={{
                                 display: currentViewMode === "spread" ? "flex": "none",
                             }}
-                            onMouseEnter={() => {pageMouseEnter(spreadRefs.current[(pageNumber + 1) / 2])}}
-                            onMouseLeave={() => {pageMouseLeave(spreadRefs.current[(pageNumber + 1) / 2])}}
-                            onMouseDown={() => {pageMouseDown(spreadRefs.current[(pageNumber + 1) / 2])}}
+                            onMouseEnter={() => {
+                                if (!isOpening) {
+                                    pageMouseEnter(spreadRefs.current[(pageNumber + 1) / 2])
+                                }
+                            }}
+                            onMouseLeave={() => {
+                                if (!isOpening) {
+                                    pageMouseLeave(spreadRefs.current[(pageNumber + 1) / 2])
+                                }
+                            }}
+                            onMouseDown={() => {
+                                if (!isOpening && !isArmAnimating) {
+                                    pageMouseDown(spreadRefs.current[(pageNumber + 1) / 2]);
+                                }
+                            }}
                             onMouseUp={() => {
-                                pageMouseUp(spreadRefs.current[(pageNumber + 1) / 2]);
-                                if (!isArmAnimating) {
-                                    setCurrentClicked("thumbnail");
-                                    setCurrentPageNumber(pageNumber);
+                                if (!isOpening && !isArmAnimating) { 
+                                    pageMouseUp(spreadRefs.current[(pageNumber + 1) / 2]);
+                                    if (!isArmAnimating) {
+                                        setCurrentClicked("thumbnail");
+                                        setCurrentPageNumber(pageNumber);
+                                    }
                                 }
                             }}
                         />

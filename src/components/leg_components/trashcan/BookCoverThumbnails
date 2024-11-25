@@ -69,41 +69,41 @@
 //                         filter: (book.id === selectedBookId)? 'brightness(0.5)' : 'brightness(1)'
 //                     }}
 
-//                     onMouseEnter = {() => {pageMouseEnter(coverRefs.current[index]);}}
-//                     onMouseLeave = {() => {pageMouseLeave(coverRefs.current[index]);}}
-//                     onMouseUp = {() => {pageMouseUp(coverRefs.current[index]);}}
-//                     onMouseDown = {() => {pageMouseDown(coverRefs.current[index]);}}
+                    // onMouseEnter = {() => {pageMouseEnter(coverRefs.current[index]);}}
+                    // onMouseLeave = {() => {pageMouseLeave(coverRefs.current[index]);}}
+                    // onMouseUp = {() => {pageMouseUp(coverRefs.current[index]);}}
+                    // onMouseDown = {() => {pageMouseDown(coverRefs.current[index]);}}
 
-//                     onClick = {() => {
-//                         if(book.id === selectedBookId){
-//                             setIsThumbnailClicked(true);
-//                             setBookPage(0);
-//                             setTimeout(() => {
-//                                 setIsThumbnailClicked(false);
-//                             },100);
-//                         }else{
-//                             setPageDirection(1);
-//                             setBookPage(-1);
-//                             setHoveredBookId(book.id);
-//                             setTimeout(() => {
-//                                 setIsArmAnimating(true);
-//                             },1);
-//                             setTimeout(() => {
-//                                 setSelectedBookId(book.id);
-//                                 setSelectedBookPages(parseInt(book.pages));
-//                                 setIsArmAnimating(false);
-//                             },400);
-//                             setTimeout(() => {
-//                                 setBookPage(0);
-//                             },2600);// <- 이거 로딩애니메이팅 시간
-//                             setTimeout(() => {
-//                                 setIsArmAnimating(true);
-//                             },2600+1);
-//                             setTimeout(() => {
-//                                 setIsArmAnimating(false);
-//                             }, 2600 + 400);
-//                         }
-//                     }}
+                    // onClick = {() => {
+                    //     if(book.id === selectedBookId){
+                    //         setIsThumbnailClicked(true);
+                    //         setBookPage(0);
+                    //         setTimeout(() => {
+                    //             setIsThumbnailClicked(false);
+                    //         },100);
+                    //     }else{
+                    //         setPageDirection(1);
+                    //         setBookPage(-1);
+                    //         setHoveredBookId(book.id);
+                    //         setTimeout(() => {
+                    //             setIsArmAnimating(true);
+                    //         },1);
+                    //         setTimeout(() => {
+                    //             setSelectedBookId(book.id);
+                    //             setSelectedBookPages(parseInt(book.pages));
+                    //             setIsArmAnimating(false);
+                    //         },400);
+                    //         setTimeout(() => {
+                    //             setBookPage(0);
+                    //         },2600);// <- 이거 로딩애니메이팅 시간
+                    //         setTimeout(() => {
+                    //             setIsArmAnimating(true);
+                    //         },2600+1);
+                    //         setTimeout(() => {
+                    //             setIsArmAnimating(false);
+                    //         }, 2600 + 400);
+                    //     }
+                    // }}
 //                 />
 //             ))}
 //         </Container>
