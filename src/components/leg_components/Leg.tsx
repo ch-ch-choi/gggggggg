@@ -36,6 +36,7 @@ const Leg = () => {
     const mainRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef(null);
     const setIsArmAnimating = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
+    const isBookChanging = useIsArmAnimatingStore((state) => state.isBookChanging);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
     const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
@@ -73,11 +74,13 @@ const Leg = () => {
     }, []);
 
     useEffect(() => {
-        setIsArmAnimating(true);
-        setTimeout(() => {
-            setIsArmAnimating(false);
-        }, 400);
-    }, [currentPageNumber])
+        if (!isBookChanging) {
+            setIsArmAnimating(true);
+            setTimeout(() => {
+                setIsArmAnimating(false);
+            }, 400);
+        }
+    }, [currentPageNumber]);
 
     return(
         <Wrapper headerHeight="96px">

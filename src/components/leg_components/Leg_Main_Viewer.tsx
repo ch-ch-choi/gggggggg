@@ -66,8 +66,8 @@ const Viewer = () => {
         setPageDirection(1);
         setTimeout(() =>{
             setCurrentPageNumber(0);
-        },2400);
-    },[currentBookId])
+        }, 2600);
+    },[currentBookId]);
 
     useEffect(() => {
         if (currentPageNumber % 2 === 0 && currentPageNumber !== 0 && currentViewMode === "spread"){

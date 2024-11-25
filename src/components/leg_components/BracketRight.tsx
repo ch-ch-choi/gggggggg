@@ -45,14 +45,14 @@ const BracketRight: React.FC<BracketProps> = ({height}) => {
             <svg width="42" height={height} viewBox={`0 0 42 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
                 <path d={pathData} fill="black" ref={btnRef}/>
                 <path d={pathData} fill="transparent"
-                    onMouseEnter={!isOpening ? () => bracketMouseEnter(btnRef.current) : undefined}
-                    onMouseLeave={!isOpening ? () => bracketMouseLeave(btnRef.current) : undefined}
-                    onMouseDown={!isOpening && !isArmAnimating  ? () => bracketMouseDown(btnRef.current) : undefined}
-                    onMouseUp={!isOpening && !isArmAnimating  ? () => {
+                    onMouseEnter={!isOpening && !isArmAnimating ? () => bracketMouseEnter(btnRef.current) : undefined}
+                    onMouseLeave={!isOpening && !isArmAnimating ? () => bracketMouseLeave(btnRef.current) : undefined}
+                    onMouseDown={!isOpening && !isArmAnimating ? () => bracketMouseDown(btnRef.current) : undefined}
+                    onMouseUp={!isOpening && !isArmAnimating ? () => {
                         bracketMouseUp(btnRef.current); 
                         setCurrentClicked("bracket");
                         setPageDirection(1);
-                        if (!isArmAnimating && currentPageNumber !== (currentPageCount-1)){
+                        if (currentPageNumber !== (currentPageCount-1)){
                             if (currentViewMode === "page") {
                                 setCurrentPageNumber(currentPageNumber + 1)
                             } else if (currentViewMode === "spread") {

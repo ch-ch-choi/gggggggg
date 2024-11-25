@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import booksDataJSON from "../../assets/data/books.json";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import { pageMouseDown, pageMouseEnter, pageMouseLeave, pageMouseUp } from "../../animations/pageClickAnimations";
 import useIsThumbnailClickedStore from "../../stores/is_thumbnail_clicked_store";
@@ -58,6 +58,11 @@ const CoverList = () => {
     const setIsArmAnimating = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
     const setCurrentPageCount = useBookViewerStore((state) => state.setCurrentPageCount);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
+    const setIsBookChanging = useIsArmAnimatingStore((state) => state.setIsBookChanging);
+
+    useEffect(() => {
+        console.log(isArmAnimating);
+    }, [isArmAnimating]);
 
     return (
         <Container>
@@ -83,33 +88,18 @@ const CoverList = () => {
                             },100);
                         }else{
                             setCurrentClicked("bracket");
+                            setIsBookChanging(true);
                             setIsArmAnimating(true);
                             setHoveredBookId(book.id);
                             setPageDirection(1);
                             setCurrentPageNumber(-1);
                             setTimeout(() => {
                                 setCurrentBookId(book.id);
-                            },500);
-                            // setPageDirection(1);
-                            // setHoveredBookId(book.id);
-                            // setCurrentPageNumber(-1);
-                            // setTimeout(() => {
-                            //     setIsArmAnimating(true);
-                            // },1);
-                            // setTimeout(() => {
-                            //     setCurrentBookId(book.id);
-                            //     setCurrentPageCount(parseInt(book.pages));
-                            //     setIsArmAnimating(false);
-                            // },400);
-                            // setTimeout(() => {
-                            //     setCurrentPageNumber(0);
-                            // },2600);// <- 이거 로딩애니메이팅 시간
-                            // setTimeout(() => {
-                            //     setIsArmAnimating(true);
-                            // },2600+1);
-                            // setTimeout(() => {
-                            //     setIsArmAnimating(false);
-                            // }, 2600 + 400);
+                            }, 400);
+                            setTimeout(() => {
+                                setIsArmAnimating(false);
+                                setIsBookChanging(false);
+                            }, 400 + 2600 + 400);
                         }
                     } : undefined}
                 />
