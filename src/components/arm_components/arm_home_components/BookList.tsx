@@ -9,6 +9,8 @@ import { bookListLoading, bookListLoadingStandby } from '../../../animations/hea
 import { Link, useNavigate } from 'react-router-dom';
 import useBookViewerStore from '../../../stores/book_viewer_store';
 import useIsOpeningStore from '../../../stores/is_opening_store';
+import useBodyToLegStore from '../../../stores/body_to_leg_store';
+import { bookCoverTransition, bookListTransition } from '../../../animations/bodyToArmTransitionAnimations';
 
 const booksData = JSON.parse(JSON.stringify(booksDataJSON));
 const lettersData = JSON.parse(JSON.stringify(lettersDataJSON));
@@ -19,15 +21,20 @@ const Container = styled.div`
     display: flex;
     gap: 6px;
 `;
+
+interface CursorProps {
+    enabled: boolean;
+}
+
 const BookIndicator = styled.div``;
-const BookId = styled.div`
-    cursor: pointer;
+const BookId = styled.div<CursorProps>`
+    cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 `;
-const BookDate = styled.div`
-    cursor: pointer;
+const BookDate = styled.div<CursorProps>`
+    cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 `;
-const BookName = styled.div`
-    cursor: pointer;
+const BookName = styled.div<CursorProps>`
+    cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 `;
 
 interface Book {
@@ -44,7 +51,7 @@ interface Book {
 const BookList = () => {
     const letterNumber = useLetterLogoStore((state) => state.letterNumber);
     const tag:string = lettersData[letterNumber].tag;
-    const filteredBooks = booksData.filter((book: Book) => Object.values(book.tags).includes(tag)); 
+    const filteredBooks = booksData.filter((book: Book) => Object.values(book.tags).includes(tag));
     const listRef = useRef(null);
 
     const hoveredBookId = useHoveredBookStore((state) => state.hoveredBook);
@@ -52,8 +59,10 @@ const BookList = () => {
     
     const setCurrentBookId = useBookViewerStore((state) => state.setCurrentBookId);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
-
+    const setBodyToLeg = useBodyToLegStore((state) => state.setBodyToLeg);
+    const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
     const navigate = useNavigate();
 
     const handleMouseEnter = (id: string) => {
@@ -61,15 +70,17 @@ const BookList = () => {
     };
 
     const onClick = () => {
-        setCurrentBookId(hoveredBookId);
-        setIsOpening(true);
-        setCurrentPageNumber(-1);
+        if(!bodyToLeg){
+            setCurrentBookId(hoveredBookId);
+            setIsOpening(true);
+            setCurrentPageNumber(-1);
 
-        // 애니메이션 여기다가.
+            setBodyToLeg(true);
 
-        setTimeout(() => {
-            navigate("/viewer");
-          }, 2000);
+            setTimeout(() => {
+                navigate("/viewer");
+            }, 3000);
+        }
     };
 
     useEffect(()=>{
@@ -80,6 +91,12 @@ const BookList = () => {
             }, 1700);
         }
     },[]);
+
+    useEffect(() => {
+        if(bodyToLeg){
+        bookListTransition(listRef.current);
+        }
+    },[bodyToLeg])
 
     return (
         <Container ref = {listRef}>
@@ -93,24 +110,24 @@ const BookList = () => {
                     ))}
                 </ol>
             </BookIndicator>
-            <BookId>
+            <BookId enabled={!bodyToLeg && !isOpening}>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                            <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.id}</li>
+                            <li id={book.id} onMouseEnter={!bodyToLeg && !isOpening ? () => handleMouseEnter(book.id) : undefined} onClick={onClick}>{book.id}</li>
                     ))}
                 </ol>
             </BookId>
-            <BookDate>
+            <BookDate enabled={!bodyToLeg && !isOpening}>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                            <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.date}</li>
+                            <li id={book.id} onMouseEnter={!bodyToLeg && !isOpening ? () => handleMouseEnter(book.id) : undefined} onClick={onClick}>{book.date}</li>
                     ))}
                 </ol>
             </BookDate>
-            <BookName>
+            <BookName enabled={!bodyToLeg && !isOpening}>
                 <ol>
                     {filteredBooks.map((book: Book) => (
-                            <li id={book.id} onMouseEnter={() => handleMouseEnter(book.id)} onClick={onClick}>{book.name}</li>
+                            <li id={book.id} onMouseEnter={!bodyToLeg && !isOpening ? () => handleMouseEnter(book.id) : undefined} onClick={onClick}>{book.name}</li>
                     ))}
                 </ol>
             </BookName>

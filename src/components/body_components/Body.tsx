@@ -12,6 +12,9 @@ import Wrapper from './Wrapper';
 import Head from './Head';
 import { LetterBtnsKor, LetterBtnsEng } from './LetterBtns';
 import { titleLoading, titleLoadingStandby } from '../../animations/headAnimations';
+import useBodyToLegStore from '../../stores/body_to_leg_store';
+import { sideExit } from '../../animations/bodyToArmTransitionAnimations';
+import useIsOpeningStore from '../../stores/is_opening_store';
 ////////////////////////////////////////////////////////////////////////
 const Title = styled.img`
   width: 160px; 
@@ -24,12 +27,20 @@ const Body = () => {
   const [mainHeight, setMainHeight] = useState<number | null>(null);
   const mainRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef(null);
+  const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
+  const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
+  const isOpening = useIsOpeningStore((state) => state.isOpening);
 
   useEffect(() => {
     titleLoadingStandby(titleRef.current)
     setTimeout(() => {
       titleLoading(titleRef.current);
     }, 1700);
+
+    setIsOpening(true);
+    setTimeout(() => {
+      setIsOpening(false);
+    }, 4300)
 
     // 창 크기 변경 시 호출되는 함수 정의
     const handleResize = () => {
@@ -45,7 +56,20 @@ const Body = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []); // 빈 배열 사용 - 컴포넌트가 처음 렌더링될 때만 실행 
+
+
+  }, []); 
+
+  // 전환 애니메이션
+  useEffect(() => {
+    if(bodyToLeg){
+      sideExit(titleRef.current,-1);
+    }
+  }, [bodyToLeg]);
+
+  useEffect(() => {
+    console.log(isOpening);
+  }, [isOpening])
 
   return (
     <>
@@ -57,9 +81,9 @@ const Body = () => {
         <ToggleKnob lang="kor"/>
       </Header>
       <Main ref={mainRef} maxHeight='1920px' spanNumber={3} router='body'>
-          <BracketLeft height={mainHeight}/>
+          <BracketLeft  height={mainHeight}/>
           <Arms/>
-          <BracketRight height={mainHeight}/>
+          <BracketRight  height={mainHeight}/>
       </Main>
       <Footer height="96px">
         <LetterBtnsEng/>

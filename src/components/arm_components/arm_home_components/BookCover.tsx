@@ -3,6 +3,8 @@ import booksDataJSON from "../../../assets/data/books.json"
 import useHoveredBookStore from "../../../stores/hovered_book_store"
 import { useEffect, useRef } from "react";
 import { bookCoverLoading, bookCoverLoadingStandby } from "../../../animations/headAnimations";
+import useBodyToLegStore from "../../../stores/body_to_leg_store";
+import { bookCoverTransition } from "../../../animations/bodyToArmTransitionAnimations";
 
 interface ContainerProps {
     coverImg: string | null;
@@ -34,6 +36,8 @@ const BookCover = ({location}:{location:string}) => {
     const hoveredBook = booksData.find((book: Book) => book.id === hoveredBookId);
     const hoveredBookCover = hoveredBook ? hoveredBook.coverBW : null;
 
+    const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
+
     const bodyOrLeg = location;
 
     useEffect(() => {
@@ -46,6 +50,12 @@ const BookCover = ({location}:{location:string}) => {
             }
         }
     },[])
+
+    useEffect(() => {
+        if(bodyToLeg && bodyOrLeg === "Body"){
+        bookCoverTransition(coverRef.current);
+        }
+    },[bodyToLeg])
 
     return (
         <Container coverImg={hoveredBookCover} ref={coverRef}/>

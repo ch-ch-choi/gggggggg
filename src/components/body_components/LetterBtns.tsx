@@ -7,6 +7,7 @@ import useHoveredBookStore from '../../stores/hovered_book_store';
 import { btnMouseDown, btnMouseUp, btnMouseEnter, btnMouseLeave } from '../../animations/btnClickAnimations';
 import { btnsOn, btnsOff, btnsOpening, btnsStandby } from '../../animations/toggleKnobAnimations';
 import useKnobOnOffStore from '../../stores/knob_on_off_store';
+import useIsOpeningStore from '../../stores/is_opening_store';
 
 interface Letter {
   tag: string;
@@ -28,6 +29,9 @@ interface Book {
 }
 interface LetterBtnsProps {
   position?: string;
+}
+interface CursorProps {
+  enabled: boolean;
 }
 
 const lettersData: Letter[] = JSON.parse(JSON.stringify(lettersDataJSON));
@@ -53,11 +57,11 @@ const LetterBtn = styled.div`
   height: 40px;
   position: absolute;
 `;
-const ClickRange = styled.div`
+const ClickRange = styled.div<CursorProps>`
   width: 40px;  height: 40px;
   // background-color: teal;
   border-radius: 50%;
-  cursor: pointer;
+  cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
   position: absolute;
 `;
 const Container = styled.div`
@@ -74,6 +78,7 @@ export const LetterBtnsKor = () => {
   const btnsRef = useRef(null);
 
   const knobOnOff = useKnobOnOffStore((state) => state.korKnobOnOff);
+  const isOpening = useIsOpeningStore((state) => state.isOpening);
   
   useEffect(() => {
     const tag: string = lettersData[letterNumber].tag;
@@ -128,12 +133,12 @@ export const LetterBtnsKor = () => {
           ref={(el) => (btnRefs.current[index] = el)}
           style={{ backgroundImage: `url(${letter.letterBtn})` }}
         />
-        <ClickRange
-          onMouseEnter={() => btnMouseEnter(btnRefs.current[index])}
-          onMouseLeave={() => btnMouseLeave(btnRefs.current[index])}
-          onMouseDown={() => btnMouseDown(btnRefs.current[index])}
-          onMouseUp={() => btnMouseUp(btnRefs.current[index])}
-          onClick={() => letterClick(index)}
+        <ClickRange enabled = {!isOpening}
+          onMouseEnter={!isOpening ? () => btnMouseEnter(btnRefs.current[index]) : undefined}
+          onMouseLeave={!isOpening ? () => btnMouseLeave(btnRefs.current[index]) : undefined}
+          onMouseDown={!isOpening ? () => btnMouseDown(btnRefs.current[index]) : undefined}
+          onMouseUp={!isOpening ? () => btnMouseUp(btnRefs.current[index]) : undefined}
+          onClick={!isOpening ? () => letterClick(index) : undefined}
         />
         </Container>
       ))}
@@ -149,6 +154,7 @@ export const LetterBtnsEng = () => {
   const btnsRef = useRef(null);
 
   const knobOnOff = useKnobOnOffStore((state) => state.engKnobOnOff);
+  const isOpening = useIsOpeningStore((state) => state.isOpening);
   
   // knobOnOff 상태에 따라 letterBtns에 animation
   const isFirstRender = useRef(true);
@@ -191,12 +197,12 @@ export const LetterBtnsEng = () => {
           ref={(el) => (btnRefs.current[index] = el)}
           style={{ backgroundImage: `url(${letter.letterBtn})` }}
         />
-        <ClickRange
-            onMouseEnter={() => btnMouseEnter(btnRefs.current[index])}
-            onMouseLeave={() => btnMouseLeave(btnRefs.current[index])}
-            onMouseDown={() => btnMouseDown(btnRefs.current[index])}
-            onMouseUp={() => btnMouseUp(btnRefs.current[index])}
-            onClick={() => letterClick(index + 19)}
+        <ClickRange enabled = {!isOpening}
+            onMouseEnter={!isOpening ? () => btnMouseEnter(btnRefs.current[index]) : undefined}
+            onMouseLeave={!isOpening ? () => btnMouseLeave(btnRefs.current[index]) : undefined}
+            onMouseDown={!isOpening ? () => btnMouseDown(btnRefs.current[index]) : undefined}
+            onMouseUp={!isOpening ? () => btnMouseUp(btnRefs.current[index]) : undefined}
+            onClick={!isOpening ? () => letterClick(index + 19) : undefined}
         />
         </Container>
       ))}

@@ -6,6 +6,9 @@ import useBodyPageStore from '../../stores/body_page_store';
 import usePageDirectionStore from '../../stores/page_direction_store';
 import useIsArmAnimatingStore from '../../stores/is_arm_animating_store';
 import { bracketLoading, bracketLoadingStandby } from '../../animations/headAnimations';
+import useBodyToLegStore from '../../stores/body_to_leg_store';
+import { bracketTransition } from '../../animations/bodyToArmTransitionAnimations';
+import useIsOpeningStore from '../../stores/is_opening_store';
 
 interface BracketLeftProps {
     height: any;
@@ -33,6 +36,11 @@ const BracketLeft: React.FC<BracketLeftProps> = ({height}) => {
     const setEngKnob = useKnobOnOffStore((state) => state.setEngKnobOnOff);
     const korKnob = useKnobOnOffStore((state) => state.korKnobOnOff);
     const engKnob = useKnobOnOffStore((state) => state.engKnobOnOff);
+
+    const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
+
+
     const turningKnobsOff = () => {
         if (korKnob === true) {
             setKorKnob(false);
@@ -51,15 +59,21 @@ const BracketLeft: React.FC<BracketLeftProps> = ({height}) => {
         }
     },[]);
 
+    useEffect(() => {
+        if(bodyToLeg){
+          bracketTransition(bracketRef.current,-1);
+        }
+      }, [bodyToLeg]);
+
     return(
         <Container ref={bracketRef}>
         <svg width="42" height={height} viewBox={`0 0 42 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
             <path d={pathData} fill="black" ref={btnRef}/>
             <path d={pathData} fill="transparent" 
-                onMouseEnter={() => bracketMouseEnter(btnRef.current)}
-                onMouseLeave={() => bracketMouseLeave(btnRef.current)}
-                onMouseDown={() => bracketMouseDown(btnRef.current)}
-                onMouseUp={() => {
+                onMouseEnter={!isOpening ? () => bracketMouseEnter(btnRef.current) : undefined}
+                onMouseLeave={!isOpening ? () => bracketMouseLeave(btnRef.current) : undefined}
+                onMouseDown={!isOpening ? () => bracketMouseDown(btnRef.current) : undefined}
+                onMouseUp={!isOpening ? () => {
                     bracketMouseUp(btnRef.current); 
                     turningKnobsOff(); 
                     if (!isArmAnimating) {
@@ -68,7 +82,7 @@ const BracketLeft: React.FC<BracketLeftProps> = ({height}) => {
                         }
                         setPageDirection(-1);
                     };
-            }}/>
+            }: undefined}/>
         </svg>
         </Container>
     );

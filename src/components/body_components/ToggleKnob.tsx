@@ -6,12 +6,17 @@ import { useEffect, useRef } from "react";
 import useKnobOnOffStore from "../../stores/knob_on_off_store";
 import useBodyPageStore from "../../stores/body_page_store";
 import { knobLoading, knobLoadingStandby } from "../../animations/headAnimations";
-
-const Knob = styled.img`
+import useBodyToLegStore from "../../stores/body_to_leg_store";
+import { sideExit } from "../../animations/bodyToArmTransitionAnimations";
+import useIsOpeningStore from "../../stores/is_opening_store";
+interface CursorProps {
+    enabled: boolean;
+}
+const Knob = styled.img<CursorProps>`
   width: 50px; height: 50px;
   position: absolute;
   right: 20px;
-  cursor: pointer;
+  cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
   transform: rotate(90deg);
 `;
 interface ToggleKnobProps {
@@ -23,6 +28,8 @@ const ToggleKnob: React.FC<ToggleKnobProps> = ({lang}) => {
     const knobRef = useRef(null);
     const bodyPage = useBodyPageStore((state) => state.bodyPage);
     const knob = (lang === "kor") ? knobKor : knobEng;
+    const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
     // 상태 변경 후 애니메이션 실행
     useEffect(() => {
         if (knobRef.current) {
@@ -46,9 +53,19 @@ const ToggleKnob: React.FC<ToggleKnobProps> = ({lang}) => {
         }, 2300) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 버튼이랑 같아야함
     },[])
     
+    useEffect(() => {
+        if(bodyToLeg){
+          sideExit(knobRef.current,+1);
+          setKnobOnOff(false);
+        }
+      }, [bodyToLeg]);
+
     const onClick = () => {
+        
         if (bodyPage===0){
-            setKnobOnOff(!knobOnOff); // 상태 반전
+            if(!isOpening){
+                setKnobOnOff(!knobOnOff); // 상태 반전
+            }
         }else{
             knobDisabled(knobRef.current);
         }
@@ -56,9 +73,7 @@ const ToggleKnob: React.FC<ToggleKnobProps> = ({lang}) => {
 
     // console.log(knobOnOff);
     return (
-        <Knob ref={knobRef} src={knob} alt='토글버튼' onClick={onClick}>
-            
-        </Knob>
+        <Knob enabled={!isOpening} ref={knobRef} src={knob} alt='토글버튼' onClick={onClick}/>
     );
 }
 

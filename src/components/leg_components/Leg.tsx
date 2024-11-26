@@ -25,10 +25,16 @@ import useIsArmAnimatingStore from "../../stores/is_arm_animating_store";
 import useIsOpeningStore from "../../stores/is_opening_store";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import usePageDirectionStore from "../../stores/page_direction_store";
+import useBodyToLegStore from "../../stores/body_to_leg_store";
 
-const Logo = styled.img`
+interface LogoProps {
+    enabled: boolean;
+}
+
+const Logo = styled.img<LogoProps>`
     width:84px; height:48px; 
     margin-top: 24px;
+    cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 `;
 
 const Leg = () => {
@@ -36,14 +42,19 @@ const Leg = () => {
     const mainRef = useRef<HTMLDivElement>(null);
     const logoRef = useRef(null);
     const setIsArmAnimating = useIsArmAnimatingStore((state) => state.setIsArmAnimating);
+    const isArmAnimating = useIsArmAnimatingStore((state) => state.isArmAnimating);
     const isBookChanging = useIsArmAnimatingStore((state) => state.isBookChanging);
     const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
+    const isOpening = useIsOpeningStore((state) => state.isOpening);
     const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
+    const setBodyToLeg = useBodyToLegStore((state) => state.setBodyToLeg);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
 
 
     useEffect(() => {
+        setBodyToLeg(false);
+        setIsOpening(true);
         setCurrentClicked('bracket');
         setTimeout(() => {
             setIsOpening(false);
@@ -82,11 +93,17 @@ const Leg = () => {
         }
     }, [currentPageNumber]);
 
+    const linkClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if(isArmAnimating||isOpening){
+            event.preventDefault();
+        }
+    }
+
     return(
         <Wrapper headerHeight="96px">
             <Header height="96px">
-                <Link ref={logoRef} to="/">
-                    <Logo src={logo} alt='꿈끼깡꾀' style={{top:"20px"}}/>
+                <Link ref={logoRef} to="/" onClick={linkClick}>
+                    <Logo src={logo} alt='꿈끼깡꾀' style={{top:"20px"}} enabled={!isArmAnimating&&!isOpening}/>
                 </Link>
             </Header>
             <Side maxHeight="1920px" position={-1}>

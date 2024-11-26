@@ -6,6 +6,8 @@ import BookCover from './arm_home_components/BookCover';
 import BookList from './arm_home_components/BookList'
 import Arm from './Arm';
 import { logoLoading, logoLoadingStandby } from '../../animations/headAnimations';
+import useBodyToLegStore from '../../stores/body_to_leg_store';
+import { logoTransition } from '../../animations/bodyToArmTransitionAnimations';
 
 interface Letter {
     tag: string;
@@ -32,6 +34,7 @@ const Arm_home = () => {
     const letterLogo = letters[letterNumber].letterLogo;
     const logoRef = useRef(null);
 
+    const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
 
     useEffect(() => {
         logoLoadingStandby(logoRef.current);
@@ -39,10 +42,13 @@ const Arm_home = () => {
         setTimeout(() => {
             logoLoading(logoRef.current);
         }, 1600); // 오프닝 애니메이션 시간
-
-
-
     }, []);
+
+    useEffect(() => {
+        if(bodyToLeg){
+        logoTransition(logoRef.current);
+        }
+    },[bodyToLeg])
 
     return (
         <Arm pageNumber='0'>
