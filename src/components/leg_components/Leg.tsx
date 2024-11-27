@@ -26,6 +26,7 @@ import useIsOpeningStore from "../../stores/is_opening_store";
 import useBookViewerStore from "../../stores/book_viewer_store";
 import usePageDirectionStore from "../../stores/page_direction_store";
 import useBodyToLegStore from "../../stores/body_to_leg_store";
+import { autoAlpha } from "../../animations/autoAlphaAnimations";
 
 interface LogoProps {
     enabled: boolean;
@@ -34,6 +35,7 @@ interface LogoProps {
 const Logo = styled.img<LogoProps>`
     width:84px; height:48px; 
     margin-top: 24px;
+    z-index: -1;
     cursor: ${({ enabled }) => (enabled ? "pointer" : "default")};
 `;
 
@@ -50,7 +52,7 @@ const Leg = () => {
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
     const setBodyToLeg = useBodyToLegStore((state) => state.setBodyToLeg);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
-
+    const wrapperRef = useRef(null);
 
     useEffect(() => {
         setBodyToLeg(false);
@@ -99,8 +101,10 @@ const Leg = () => {
         }
     }
 
+    autoAlpha(wrapperRef.current);
+
     return(
-        <Wrapper headerHeight="96px">
+        <Wrapper ref={wrapperRef} headerHeight="96px">
             <Header height="96px">
                 <Link ref={logoRef} to="/" onClick={linkClick}>
                     <Logo src={logo} alt='꿈끼깡꾀' style={{top:"20px"}} enabled={!isArmAnimating&&!isOpening}/>

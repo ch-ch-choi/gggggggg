@@ -15,6 +15,7 @@ import { titleLoading, titleLoadingStandby } from '../../animations/headAnimatio
 import useBodyToLegStore from '../../stores/body_to_leg_store';
 import { sideExit } from '../../animations/bodyToArmTransitionAnimations';
 import useIsOpeningStore from '../../stores/is_opening_store';
+import { autoAlpha } from '../../animations/autoAlphaAnimations';
 ////////////////////////////////////////////////////////////////////////
 const Title = styled.img`
   width: 160px; 
@@ -30,6 +31,7 @@ const Body = () => {
   const bodyToLeg = useBodyToLegStore((state) => state.bodyToLeg);
   const setIsOpening = useIsOpeningStore((state) => state.setIsOpening);
   const isOpening = useIsOpeningStore((state) => state.isOpening);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     titleLoadingStandby(titleRef.current)
@@ -64,6 +66,11 @@ const Body = () => {
   useEffect(() => {
     if(bodyToLeg){
       sideExit(titleRef.current,-1);
+      setTimeout(() => {
+        if(mainRef.current){
+            mainRef.current.style.width = "100%";
+        }
+      }, 400)
     }
   }, [bodyToLeg]);
 
@@ -71,10 +78,12 @@ const Body = () => {
     console.log(isOpening);
   }, [isOpening])
 
+  autoAlpha(wrapperRef.current);
+
   return (
     <>
     <Head/>
-    <Wrapper headerHeight='96px'>
+    <Wrapper ref={wrapperRef} headerHeight='96px'>
       <Header height="96px">
         <Title src={title} alt='꿈끼깡꾀' ref={titleRef}/>
         <LetterBtnsKor/>
