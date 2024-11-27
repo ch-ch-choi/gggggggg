@@ -15,16 +15,23 @@ interface BracketRightProps {
     // linkRight: string;
 }
 
-const Container = styled.div`
+interface bodyToLeg {
+    bodyToLeg: boolean;
+}
+const Container = styled.div<bodyToLeg>`
     position: absolute;
-    right: 0;
+    right: calc(50% - 480px);
+        @media (max-width: 1640px){
+            right: calc(50% - 444px);
+        }
     z-index: 1;
+    transition: right 0.4s ease-out; /* 애니메이션 추가 */
 `;
 
 const BracketRight: React.FC<BracketRightProps> = ({height}) => {
     const pathData = `M0 0 H42 V${height} H0 V${height - 18} H24 V18 H0 V0 Z`;
     const btnRef = useRef<SVGPathElement | null>(null);
-    const bracketRef = useRef(null);
+    const bracketRef = useRef<HTMLDivElement>(null);
 
     const setKorKnob = useKnobOnOffStore((state) => state.setKorKnobOnOff);
     const setEngKnob = useKnobOnOffStore((state) => state.setEngKnobOnOff);
@@ -53,7 +60,9 @@ const BracketRight: React.FC<BracketRightProps> = ({height}) => {
 
     useEffect(() => {
         if(bodyToLeg){
-          bracketTransition(bracketRef.current,1);
+            if(bracketRef.current){
+                bracketRef.current.style.right = "300px";
+            }
         }
       }, [bodyToLeg]);
 
@@ -67,7 +76,7 @@ const BracketRight: React.FC<BracketRightProps> = ({height}) => {
     },[]);
 
     return(
-        <Container ref={bracketRef}>
+        <Container ref={bracketRef} bodyToLeg={bodyToLeg}>
         <svg width="42" height={height} viewBox={`0 0 42 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg" style={{ overflow: 'visible' }}>
             <path d={pathData} fill="black" ref={btnRef}/>
             <path d={pathData} fill="transparent" 

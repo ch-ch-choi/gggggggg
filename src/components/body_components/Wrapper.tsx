@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div<{headerHeight: string}>`
+  visibility: hidden;
   display: grid;
   grid-template-rows: ${(props) => props.headerHeight} auto ${(props) => props.headerHeight};
   grid-template-columns: auto 1fr auto ;

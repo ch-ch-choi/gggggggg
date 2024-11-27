@@ -8,7 +8,7 @@ import Arm_ from "./Arm_";
 import Arm_login from "./Arm_login";
 
 const Container = styled.div`
-    width: 100%; height: 100%;
+    width: 960px; height: 100%;
     display: flex;
     position: relative;
     align-items: center;

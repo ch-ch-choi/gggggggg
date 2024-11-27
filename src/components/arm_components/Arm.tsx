@@ -6,15 +6,12 @@ import usePageDirectionStore from '../../stores/page_direction_store';
 import useIsArmAnimatingStore from '../../stores/is_arm_animating_store';
 
 const Container= styled.div`
-    width: 960px; height: 100%;
+    width: 100%; height: 100%;
     // background-color: teal;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
-      @media (max-width: 1640px) {
-      width: 880px;
-    }
 `;
 
 interface ArmProps {

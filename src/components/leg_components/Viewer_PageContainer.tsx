@@ -28,6 +28,7 @@ const PageContainer = ({children, pageNumber}:PageContainerProps) => {
     const pageDirection = usePageDirectionStore((state) => state.pageDirection);
     const currentClicked = useBookViewerStore((state) => state.currentClicked);
     const currentPageNumber = useBookViewerStore((state) => state.currentPageNumber);
+    const currentPageCount = useBookViewerStore((state) => state.currentPageCount);
     const currentViewMode = useBookViewerStore((state) => state.currentViewMode);
     const setCurrentClicked = useBookViewerStore((state) => state.setCurrentClicked);
     const setCurrentPageNumber = useBookViewerStore((state) => state.setCurrentPageNumber);
@@ -71,7 +72,19 @@ const PageContainer = ({children, pageNumber}:PageContainerProps) => {
             }
 
         }
-    },[currentPageNumber, currentViewMode]);
+    },[currentPageNumber]);
+
+    useEffect(() => {
+        if (currentPageNumber !== 0 && pageNumber !== currentPageCount - 1){
+            if(pageNumber === currentPageNumber){
+                pageSet(containerRef.current);
+                setIsVisible(true);
+                pageAppeared(containerRef.current);
+            }else if(pageNumber !== currentPageNumber){
+                setIsVisible(false);
+            }
+        }
+    }, [currentViewMode]);
 
     // useEffect(() => {
     //     if(pageNumber === currentPageNumber + 1 && currentViewMode === "page"){

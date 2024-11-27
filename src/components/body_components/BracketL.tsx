@@ -17,14 +17,18 @@ interface BracketLeftProps {
 
 const Container = styled.div`
     position: absolute;
-    left: 0;
+    left: calc(50% - 480px);
+        @media (max-width: 1640px){
+            left: calc(50% - 444px);
+        }
     z-index: 1;
+    transition: left 0.4s ease-out; /* 애니메이션 추가 */
 `;
 
 const BracketLeft: React.FC<BracketLeftProps> = ({height}) => {
     const pathData = `M0 0 H42 V18 H18 V${height - 18}  H42 V${height}  H0 V0 Z`;
     const btnRef = useRef(null);
-    const bracketRef = useRef(null);
+    const bracketRef = useRef<HTMLDivElement>(null);
 
     const setPageDirection = usePageDirectionStore((state) => state.setPageDirection);
     const isArmAnimating = useIsArmAnimatingStore((state) => state.isArmAnimating);
@@ -61,7 +65,9 @@ const BracketLeft: React.FC<BracketLeftProps> = ({height}) => {
 
     useEffect(() => {
         if(bodyToLeg){
-          bracketTransition(bracketRef.current,-1);
+            if(bracketRef.current){
+                bracketRef.current.style.left = "300px";
+            }
         }
       }, [bodyToLeg]);
 
