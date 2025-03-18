@@ -46,7 +46,7 @@ const BookCover = ({location}:{location:string}) => {
             bookCoverLoadingStandby(coverRef.current);
             setTimeout(() => {
                 bookCoverLoading(coverRef.current);
-            }, 1780);
+            }, 2810);
             }
         }
     },[])

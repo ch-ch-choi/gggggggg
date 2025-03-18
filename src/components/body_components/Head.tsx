@@ -1,33 +1,39 @@
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { headLoading } from "../../animations/headAnimations";
-// import openingGif from "";
+// import { headLoading } from "../../animations/headAnimations";
 
-
-const Gif = styled.div`
+const Intro = styled.div`
     width: 100%; height: 100vh;
-    background-color: teal;
     position: absolute;
     z-index: 2;
+`;
 
+const BackgroundVideo = styled.video`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 `;
 
 const Head = () => {
-    const gifRef = useRef<HTMLDivElement | null>(null);
+    const introRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        if(gifRef.current){
-            headLoading(gifRef.current);
+        if(introRef.current){
+            // headLoading(introRef.current);
             setTimeout(() =>{
-                if(gifRef.current){
-                    gifRef.current.style.display = 'none';
+                if(introRef.current){
+                    introRef.current.style.display = 'none';
                 }
-            }, 1900);
+            }, 2630);
         }
     },[]);
 
     return(
-        <Gif ref = {gifRef} />
+        <Intro ref = {introRef}>
+            <BackgroundVideo autoPlay muted>
+                <source src="/gggg_intro.mp4" type="video/mp4"></source>
+            </BackgroundVideo>
+        </Intro>
     );
 }
 

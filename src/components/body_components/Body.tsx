@@ -37,12 +37,12 @@ const Body = () => {
     titleLoadingStandby(titleRef.current)
     setTimeout(() => {
       titleLoading(titleRef.current);
-    }, 1700);
+    }, 2730);
 
     setIsOpening(true);
     setTimeout(() => {
       setIsOpening(false);
-    }, 4300)
+    }, 5330)
 
     // 창 크기 변경 시 호출되는 함수 정의
     const handleResize = () => {

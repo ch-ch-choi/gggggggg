@@ -117,7 +117,7 @@ export const LetterBtnsKor = () => {
       if (btnsRef.current) {
         btnsOpening(btnsRef.current, 1);
       }
-    },2300) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 토글이랑 같아야함
+    },3330) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 토글이랑 같아야함
   }, []);
 
   const letterClick = (n: number) => {
@@ -181,7 +181,7 @@ export const LetterBtnsEng = () => {
       if(btnsRef.current) {
         btnsOpening(btnsRef.current, -1);
       }
-    },2300) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 토글이랑 같아야함
+    },3330) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 토글이랑 같아야함
   },[])
 
   const letterClick = (n: number) => {
