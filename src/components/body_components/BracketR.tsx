@@ -71,7 +71,7 @@ const BracketRight: React.FC<BracketRightProps> = ({height}) => {
             bracketLoadingStandby(bracketRef.current, 1);
             setTimeout(() => {
                 bracketLoading(bracketRef.current, 1);
-            },2730)
+            },2680)
         }
     },[]);
 

@@ -47,10 +47,10 @@ const ToggleKnob: React.FC<ToggleKnobProps> = ({lang}) => {
         knobLoadingStandby(knobRef.current);
         setTimeout(() => {
             knobLoading(knobRef.current);
-        }, 2730) // 오프닝 애니메이션 시간
+        }, 2680) // 오프닝 애니메이션 시간
         setTimeout(() => {
             knobOpening(knobRef.current);
-        }, 3330) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 버튼이랑 같아야함
+        }, 3280) // 오프닝 애니메이션 시간 + 로고 애니메이션 시간, 이거 버튼이랑 같아야함
     },[])
     
     useEffect(() => {

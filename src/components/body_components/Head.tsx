@@ -24,7 +24,7 @@ const Head = () => {
                 if(introRef.current){
                     introRef.current.style.display = 'none';
                 }
-            }, 2630);
+            }, 2580);
         }
     },[]);
 

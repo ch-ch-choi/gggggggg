@@ -41,7 +41,7 @@ const Arm_home = () => {
         // logoRef.current.style.display = 'flex'; // 요소 보이게 설정
         setTimeout(() => {
             logoLoading(logoRef.current);
-        }, 2630); // 오프닝 애니메이션 시간
+        }, 2580); // 오프닝 애니메이션 시간
     }, []);
 
     useEffect(() => {
