@@ -26,7 +26,7 @@ const Arms = () => {
                 if(containerRef.current){
                     containerRef.current.style.overflow = 'hidden'
                 }
-            }, 1700); // 오프닝 애니메이션 시간 + 로고 애니메이션 시간
+            }, 2680); // 오프닝 애니메이션 시간 + 로고 애니메이션 시간
         }
     },[]);
 

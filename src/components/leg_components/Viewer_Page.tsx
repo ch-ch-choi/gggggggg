@@ -9,7 +9,7 @@ const Page = styled.img<PageProps>`
     height: 100%; width: auto;
     max-width: ${(props) => props.viewMode === "page" ? "100%" : "50%"};
     max-height: max-content;
-    outline : 2px solid black;
+    outline : 0.9px solid black;
 `;
 
 export default Page

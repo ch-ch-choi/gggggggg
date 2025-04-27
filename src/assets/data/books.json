@@ -5,25 +5,25 @@
         "date": "2024.03.07.",
         "name": "최주혁",
         "pages": "40",
-        "coverBW": "../book_cover/cover_bw/cover_bw_000.png",
-        "coverColor": "../book_cover/cover_color/cover_000.jpg"
+        "coverBW": "../book_cover/cover_bw/bw000.jpg",
+        "coverColor": "../book_pages/000/000_m_01.jpg"
     },
     {
         "id": "001",
         "tags": {"default":"ㄲ", "kor": "ㅅ", "eng": "s"},
         "date": "2024.03.21.",
         "name": "신승헌",
-        "pages": "",
-        "coverBW": "../book_cover/cover_bw/",
-        "coverColor": "../book_cover/cover_color/"
+        "pages": "40",
+        "coverBW": "../book_cover/cover_bw/bw001.jpg",
+        "coverColor": "../book_pages/001/001_m_01.jpg"
     },
     {
         "id": "002",
         "tags": {"default":"ㄲ", "kor": "ㅇ", "eng": "l"},
         "date": "2024.06.12.",
         "name": "이다연",
-        "pages": "",
-        "coverBW": "../book_cover/cover_bw/",
-        "coverColor": "../book_cover/cover_color/"
+        "pages": "40",
+        "coverBW": "../book_cover/cover_bw/bw002.jpg",
+        "coverColor": "../book_pages/002/002_m_01.jpg"
     }
 ]

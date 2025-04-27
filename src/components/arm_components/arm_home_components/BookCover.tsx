@@ -27,6 +27,8 @@ const Container = styled.div<ContainerProps>`
     width: 156px; height: 205px;
     border : 1px solid black;
     background-image: url(${(props) => props.coverImg});
+    background-size: cover;
+    background-position: center;
 `;
 
 const BookCover = ({location}:{location:string}) => {
@@ -46,7 +48,7 @@ const BookCover = ({location}:{location:string}) => {
             bookCoverLoadingStandby(coverRef.current);
             setTimeout(() => {
                 bookCoverLoading(coverRef.current);
-            }, 1780);
+            }, 2760);
             }
         }
     },[])

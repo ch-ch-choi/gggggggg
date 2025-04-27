@@ -88,7 +88,7 @@ const BookList = () => {
             bookListLoadingStandby(listRef.current);
             setTimeout(() => {
                 bookListLoading(listRef.current);
-            }, 1700);
+            }, 2680);
         }
     },[]);
 
